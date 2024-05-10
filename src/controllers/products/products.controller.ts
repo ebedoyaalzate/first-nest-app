@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -12,8 +14,9 @@ import {
 @Controller('products')
 export class ProductsController {
   @Get('/:productId')
-  getProduct(@Param('productId') productId: string): string {
-    return `product ${productId}`;
+  @HttpCode(HttpStatus.ACCEPTED)
+  getProduct(@Param('productId') productId: string): any {
+    return { message: `product ${productId}` };
   }
 
   @Get('')
